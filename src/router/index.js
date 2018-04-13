@@ -32,14 +32,22 @@ const FontEnd = (resolve) => {
     resolve(module)
   })
 }
+const Article = (resolve) => {
+  import('components/Article/Article.vue').then((module) => {
+    resolve(module)
+  })
+}
+
 
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
+  base: './',
   routes: [
     {
       path: '/',
-      redirect: '/index'
+      redirect: '/read'
     },
     {
       path: '/index',
@@ -61,6 +69,11 @@ export default new Router({
       path: '/read',
       name: 'Read',
       component: Read
+    },
+    {
+      path: '/article',
+      name: 'Article',
+      component: Article
     },
     {
       path: '/life',
