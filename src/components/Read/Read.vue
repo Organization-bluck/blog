@@ -1,6 +1,6 @@
 <template>
   <div class="container clearfix"  v-loading.fullscreen.lock="fullscreenLoading">
-    <div  v-if="!articleId">
+    <div>
     	<div class="article-box">
   			<article-list :articleList="articleList"></article-list>
     	</div>
@@ -22,9 +22,6 @@
         </side-section>
     	</aside>
     </div>
-    <div v-else>
-      <router-view/>
-    </div>
   </div>
 </template>
 
@@ -36,7 +33,6 @@ export default {
   name: 'Read',
   data () {
     return {
-      articleId:undefined,
       articleList:[
         // {
         //   "id": 4,
@@ -57,14 +53,13 @@ export default {
         //    "create_at": "2018-04-08 08:55:36",
         // }
       ],
-      tags:[],
-      category:[]
+      tags:[]
     }
   },
   created(){
     this.fullscreenLoading=true
   },
-  mounted () {
+  mounted() {
     this.getList()
   },
   methods:{
@@ -77,12 +72,10 @@ export default {
           //   return
           // } else {
             this.articleList = this.articleList.concat(res.data.list)
-            this.category = res.data.category;
             this.fullscreenLoading = false;
           // }
         } else {
           this.list = []
-          this.category = []
         }
       })
     },

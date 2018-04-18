@@ -25,9 +25,12 @@
               text-color="#fff"
               active-text-color="#ffd04b" >
         <el-menu-item index="1"><router-link tag="div" to="/index">首页</router-link></el-menu-item>
-        <el-menu-item index="2"><router-link tag="div"  to="/read">阅读</router-link></el-menu-item>
-        <el-menu-item index="3"><router-link tag="div"  to="/life">趣闻</router-link></el-menu-item>
-        <el-menu-item index="4"><router-link tag="div"  to="/jottings">随笔</router-link></el-menu-item>
+        <el-menu-item index="2"><router-link tag="div" to="/read">阅读</router-link></el-menu-item>
+        <el-menu-item v-for="(item,index) in typeList" :index="index"><router-link tag="div" :to="item.ctitle">{{item.ctitle}}</router-link></el-menu-item>
+
+        <el-menu-item index="5"><router-link tag="div" to="/about">关于</router-link></el-menu-item>
+        <el-menu-item index="6"><router-link tag="div" to="/message">留言板</router-link></el-menu-item>
+        <!-- <el-menu-item index="6"><router-link tag="div" to="/jottings">随笔</router-link></el-menu-item> -->
       </el-menu>
     </el-header>
   </div>
@@ -38,10 +41,16 @@ import Aplayer from 'vue-aplayer'
 
 export default {
   name: 'navBar',
+  props:{
+    typeList:{
+      type:Array,
+      default:[]
+    }
+  },
   data(){
     return{
       fullscreenLoading:false,
-      activeIndex:'1',
+      activeIndex:'1'
     }
   },
   created(){

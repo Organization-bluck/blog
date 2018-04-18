@@ -11,14 +11,8 @@ const Read = (resolve) => {
   })
 }
 
-const Life = (resolve) => {
-  import('components/Life/Life.vue').then((module) => {
-    resolve(module)
-  })
-}
-
-const Jottings = (resolve) => {
-  import('components/Jottings/Jottings.vue').then((module) => {
+const BackEnd = (resolve) => {
+  import('components/BackEnd/BackEnd.vue').then((module) => {
     resolve(module)
   })
 }
@@ -76,14 +70,14 @@ export default new Router({
       component: Article
     },
     {
-      path: '/life',
-      name: 'Life',
-      component: Life
+      path: '/前端',
+      name: 'FontEnd',
+      component: FontEnd
     },
     {
-      path: '/jottings',
-      name: 'Jottings',
-      component: Jottings
+      path: '/后端',
+      name: 'BackEnd',
+      component:BackEnd
     }
   ]
 })

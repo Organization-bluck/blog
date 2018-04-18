@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <nav-Bar></nav-Bar>
+  <div id="app" v-loading.fullscreen.lock="fullscreenLoading">
+    <nav-Bar :type-list="typeList"></nav-Bar>
     <div class="container-wrap">
       <keep-alive>
         <router-view/>
@@ -23,9 +23,32 @@ export default {
   name: 'App',
   data(){
     return{
-      fullscreenLoading:false,
-      isShow:true,
-      musicList:[]
+      typeList:[],
+      fullscreenLoading:true
+    }
+  },
+  created(){
+
+  },
+  mounted(){
+    this.getList();
+  },
+  methods:{
+    getList () {
+      Axios.get("/api/Api/Blog/gethomepage").then((result)=>{
+        let res = result.data
+        if (res.code == 200) {
+          // if (data.result.count == 0) {
+          //   this.page -= 1
+          //   return
+          // } else {
+            this.typeList = res.data.category;
+            this.fullscreenLoading = false;
+          // }
+        } else {
+          this.typeList = []
+        }
+      })
     }
   },
   components:{
